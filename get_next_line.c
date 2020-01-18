@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 21:54:03 by swofferh       #+#    #+#                */
-/*   Updated: 2020/01/10 22:05:02 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/01/18 15:42:14 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ static void		free_buffer(t_list **lst, int fd)
 
 static t_state	read_line(t_list *buf, char **out)
 {
-	ssize_t	ret; //How is that even possible?
+	ssize_t	ret;
 	size_t	i;
 
 	if (buf->size == 0)
 	{
 		ret = read(buf->fd, buf->content, BUFFER_SIZE);
-		if (ret == end_read || ret == error)
+		if (ret == end_file || ret == error)
 			return (ret);
 		buf->content[ret] = '\0';
 		buf->size = ret;
@@ -77,7 +77,7 @@ int				get_next_line(int fd, char **line)
 	char				*out;
 	t_state				state;
 
-	buf = get_buffer(&buf_list, fd); //WTF is this?
+	buf = get_buffer(fd, &buf_list);
 	if (buf == NULL)
 		return (error);
 	out = NULL;
@@ -86,7 +86,7 @@ int				get_next_line(int fd, char **line)
 		state = read_line(buf, &out);
 	if (state == line_read)
 		*line = out;
-	if (state == end_read)
+	if (state == end_file)
 	{
 		*line = copy_buffer(out, "", 0);
 		free_buffer(&buf_list, fd);
