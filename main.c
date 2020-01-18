@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 22:08:52 by swofferh       #+#    #+#                */
-/*   Updated: 2020/01/10 22:12:33 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/01/18 18:16:11 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,37 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-int		main(void)
+int	main(void)
 {
-	int		fd;
+	int		fd1;
 	int		fd2;
 	int		fd3;
-	int		ret;
-	int		ret2;
-	int		ret3;
 	char	*line;
+	int		state1;
+	int		state2;
+	int		state3;
 
-	ret = 1;
-	ret2 = 1;
-	ret3 = 1;
-	fd = open("oscar-wilde.txt", O_RDONLY);
+	state1 = 1;
+	state2 = 1;
+	state3 = 1;
+	fd1 = open("oscar-wilde.txt", O_RDONLY);
 	fd2 = open("get_next_line.h", O_RDONLY);
-	fd3 = open("", O_RDONLY);
-	close(42);
-	while (ret > 0 && ret2 > 0 && ret3 > 0)
+	fd3 = open("get_next_line.pdf", O_RDONLY);
+	//close(42);
+	while (state1 > 0 && state2 > 0 && state3 > 0)
 	{
-		ret = get_next_line(fd, &line);
-		printf("%d->%s\n", ret, line);
-		// if (ret >= 0)
-		// 	free(line);
-		// ret2 = get_next_line(fd2, &line);
-		// printf("%d->%s\n", ret2, line);
-		// if (ret2 >= 0)
-		// 	free(line);
-		// ret3 = get_next_line(fd3, &line);
-		// printf("%d->%s\n", ret3, line);
-		// if (ret3 >= 0)
-		// 	free(line);
+		state1 = get_next_line(fd1, &line);
+		printf("fd[%d] ret[%d] line->%s\n", fd1, state1, line);
+		if (state1 >= 0)
+			free(line);
+		state2 = get_next_line(fd2, &line);
+		printf("fd[%d] ret[%d] line->%s\n", fd2, state2, line);
+		if (state2 >= 0)
+			free(line);
+		state3 = get_next_line(fd3, &line);
+		printf("fd[%d] ret[%d] line->%s\n", fd3, state3, line);
+		if (state3 >= 0)
+			free(line);
 	}
 	//while (1){}
 	return (0);
