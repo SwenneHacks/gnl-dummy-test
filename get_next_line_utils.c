@@ -6,13 +6,13 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 21:53:24 by swofferh       #+#    #+#                */
-/*   Updated: 2020/01/10 21:58:14 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/01/18 18:18:46 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-t_list	*get_buffer(t_list **lst, int fd)
+t_list	*get_buffer(int fd, t_list **lst)
 {
 	t_list	*node;
 	t_list	*new;
@@ -20,7 +20,7 @@ t_list	*get_buffer(t_list **lst, int fd)
 	node = *lst;
 	while (node)
 	{
-		if (node->fd == fd)
+		if (node->fd == fd)// checking / scaning for existing fd
 			return (node);
 		node = node->next;
 	}
@@ -33,7 +33,7 @@ t_list	*get_buffer(t_list **lst, int fd)
 		free(new);
 		return (NULL);
 	}
-	new->size = 0;
+	new->size = 0; // looking for new ones - fds (to handle multiples)
 	new->fd = fd;
 	new->next = *lst;
 	*lst = new;
@@ -42,7 +42,7 @@ t_list	*get_buffer(t_list **lst, int fd)
 
 char		*copy_buffer(char *old, char *new, size_t n)
 {
-	char	*next;
+	char	*next; // why call it next?
 	size_t	len;
 
 	if (old == NULL)
@@ -65,12 +65,13 @@ char		*copy_buffer(char *old, char *new, size_t n)
 	return (next);
 }
 
-char		*ft_strncpy(char *dst, const char *src, size_t len)
+// one constant unchangable state
+char		*ft_strncpy(char *dst, const char *src, size_t n)
 {
 	size_t	index;
 
 	index = 0;
-	while (index < len)
+	while (index < n)
 	{
 		dst[index] = src[index];
 		index++;
@@ -79,7 +80,7 @@ char		*ft_strncpy(char *dst, const char *src, size_t len)
 	return (dst);
 }
 
-//looks for end of line (eol)
+// looks for the end of line (eol)
 size_t		scan_index(char *str, char c)
 {
 	size_t	index;
