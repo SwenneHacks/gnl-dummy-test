@@ -6,12 +6,13 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 21:53:24 by swofferh       #+#    #+#                */
-/*   Updated: 2020/01/18 18:18:46 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/01/20 19:14:34 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+// updating struct values
 t_list	*get_buffer(int fd, t_list **lst)
 {
 	t_list	*node;
@@ -42,7 +43,7 @@ t_list	*get_buffer(int fd, t_list **lst)
 
 char		*copy_buffer(char *old, char *new, size_t n)
 {
-	char	*next; // why call it next?
+	char	*next; //why call it next?
 	size_t	len;
 
 	if (old == NULL)
