@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 21:54:03 by swofferh       #+#    #+#                */
-/*   Updated: 2020/01/23 20:02:06 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/01/23 20:13:06 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static t_state	read_line(t_list *buf, char **out)
 	if (buf->size == 0)
 	{
 		ret = read(buf->fd, buf->content, BUFFER_SIZE);
-		if (ret == end_file || ret == error)
+		if (ret == END_FILE || ret == ERROR)
 			return (ret);
 		buf->content[ret] = '\0';
 		buf->size = ret;
@@ -81,16 +81,16 @@ static t_state	read_line(t_list *buf, char **out)
 	i = scan_index(buf->content, '\n');
 	*out = copy_buffer(*out, buf->content, i);
 	if (*out == NULL)
-		return (error);
+		return (ERROR);
 	if (i < buf->size)
 	{
 		buf->size = buf->size - i - 1;
 		ft_strncpy(buf->content, buf->content + i + 1, buf->size);
-		return (line_read);
+		return (READ_LINE);
 	}
 	else
 		buf->size = 0;
-	return (loop);
+	return (LOOP);
 }
 
 int				get_next_line(int fd, char **line)
@@ -102,21 +102,21 @@ int				get_next_line(int fd, char **line)
 
 	buf = get_buffer(fd, &buf_list);
 	if (buf == NULL)
-		return (error);
+		return (ERROR);
 	out = NULL;
-	state = loop;
-	while (state == loop)
+	state = LOOP;
+	while (state == LOOP)
 		state = read_line(buf, &out);
-	if (state == line_read)
+	if (state == READ_LINE)
 		*line = out;
-	if (state == end_file)
+	if (state == END_FILE)
 	{
 		*line = copy_buffer(out, "", 0);
 		free_buffer(fd, &buf_list);
 		if (*line == NULL)
-			return (error);
+			return (ERROR);
 	}
-	if (state == error)
+	if (state == ERROR)
 		free_buffer(fd, &buf_list);
 	return (state);
 }
