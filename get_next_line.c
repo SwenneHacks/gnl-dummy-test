@@ -6,40 +6,63 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 21:54:03 by swofferh       #+#    #+#                */
-/*   Updated: 2020/01/18 15:42:14 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/01/23 20:02:06 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static void		free_recursive(t_list *lst, int fd)
-{
-	t_list	*text;
-
-	if (lst->next->fd == fd)
-	{
-		text = lst->next;
-		lst->next = lst->next->next;
-		free(text->content);
-		free(text);
-	}
-	else
-		free_recursive(lst->next, fd);
-}
-
-static void		free_buffer(t_list **lst, int fd)
+t_list			*get_buffer(int fd, t_list **lst)
 {
 	t_list	*node;
+	t_list	*new;
 
 	node = *lst;
-	if (node->fd == fd)
+	while (node)
 	{
-		*lst = node->next;
-		free(node->content);
-		free(node);
+		if (node->fd == fd)
+			return (node);
+		node = node->next;
+	}
+	new = (t_list *)malloc(sizeof(t_list));
+	if (new == NULL)
+		return (NULL);
+	new->content = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (new->content == NULL)
+	{
+		free(new);
+		return (NULL);
+	}
+	new->size = 0;
+	new->fd = fd;
+	new->next = *lst;
+	*lst = new;
+	return (new);
+}
+
+static char		*copy_buffer(char *old, char *new, size_t n)
+{
+	char	*next;
+	size_t	len;
+
+	if (old == NULL)
+	{
+		next = (char *)malloc(sizeof(char) * (n + 1));
+		if (next == NULL)
+			return (NULL);
+		ft_strncpy(next, new, n);
 	}
 	else
-		free_recursive(node, fd);
+	{
+		len = scan_index(old, '\0');
+		next = (char *)malloc(sizeof(char) * (len + n + 1));
+		if (next == NULL)
+			return (NULL);
+		ft_strncpy(next, old, len);
+		free(old);
+		ft_strncpy(next + len, new, n);
+	}
+	return (next);
 }
 
 static t_state	read_line(t_list *buf, char **out)
@@ -89,11 +112,11 @@ int				get_next_line(int fd, char **line)
 	if (state == end_file)
 	{
 		*line = copy_buffer(out, "", 0);
-		free_buffer(&buf_list, fd);
+		free_buffer(fd, &buf_list);
 		if (*line == NULL)
 			return (error);
 	}
 	if (state == error)
-		free_buffer(&buf_list, fd);
+		free_buffer(fd, &buf_list);
 	return (state);
 }
