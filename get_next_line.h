@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 21:54:19 by swofferh       #+#    #+#                */
-/*   Updated: 2020/01/18 15:40:23 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/01/23 18:53:05 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,9 @@ typedef struct			s_list
 	struct s_list		*next;
 }						t_list;
 
-t_list			*get_buffer(int fd, t_list **lst);
-char			*copy_buffer(char *old, char *new, size_t n);
-char			*ft_strncpy(char *dst, const char *src, size_t n);
-int				get_next_line(int fd, char **line);
-size_t			scan_index(char *s, char c);
+void					free_buffer(int fd, t_list **lst);
+char					*ft_strncpy(char *dst, const char *src, size_t n);
+int						get_next_line(int fd, char **line);
+size_t					scan_index(char *s, char c);
 
 #endif
