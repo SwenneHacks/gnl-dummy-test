@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 21:54:19 by swofferh       #+#    #+#                */
-/*   Updated: 2020/01/23 18:53:05 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/01/23 20:11:40 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 
 typedef enum			e_state
 {
-	line_read = 1,
-	end_file = 0,
-	error = -1,
-	loop = 2
+	READ_LINE = 1,
+	END_FILE = 0,
+	ERROR = -1,
+	LOOP = 2
 }						t_state;
 
 typedef struct			s_list
