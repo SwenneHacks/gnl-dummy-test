@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 21:53:24 by swofferh       #+#    #+#                */
-/*   Updated: 2020/01/23 18:54:57 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/01/25 16:20:12 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,31 @@ void		free_buffer(int fd, t_list **lst)
 	}
 	else
 		free_buffer(fd, &node->next);
+}
+
+char		*copy_buffer(char *old, char *new, size_t n)
+{
+	char	*next;
+	size_t	len;
+
+	if (old == NULL)
+	{
+		next = (char *)malloc(sizeof(char) * (n + 1));
+		if (next == NULL)
+			return (NULL);
+		ft_strncpy(next, new, n);
+	}
+	else
+	{
+		len = scan_index(old, '\0');
+		next = (char *)malloc(sizeof(char) * (len + n + 1));
+		if (next == NULL)
+			return (NULL);
+		ft_strncpy(next, old, len);
+		free(old);
+		ft_strncpy(next + len, new, n);
+	}
+	return (next);
 }
 
 char		*ft_strncpy(char *dst, const char *src, size_t n)
