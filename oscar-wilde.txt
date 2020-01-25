@@ -1,4 +1,5 @@
-	
+																													LONG LINE.
+
 	Oscar Wilde - 1854-1900
 
 	Poem - Requiascat
@@ -6,7 +7,7 @@
 	Tread lightly, she is near
 	  Under the snow,
 	Speak gently, she can hear
-    	  The daisies grow.
+    	The daisies grow.
 
 	All her bright golden hair
 	    Tarnished with rust,
