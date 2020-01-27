@@ -1,4 +1,4 @@
-																													LONG LINE.
+
 
 	Oscar Wilde - 1854-1900
 
@@ -28,3 +28,5 @@
 	    Lyre or sonnet,
 	All my life is buried here,
  	   Heap earth upon it.
+
+																													LONG LINE.

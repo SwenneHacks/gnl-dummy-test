@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 22:08:52 by swofferh       #+#    #+#                */
-/*   Updated: 2020/01/25 16:55:59 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/01/25 17:47:17 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,8 @@ int	main(void)
 	fd3 = open("get_next_line.c", O_RDONLY);
 	fd4 = 42;
 	close(42);
-//ERRORS
-	printf("\n[testing for errors]\n\n");
-	printf("fd[%d] return[%d]\n", fd0, get_next_line(fd0, &line));
-	printf("fd[%d] return[%d]\n", fd4, get_next_line(fd4, &line));
-//ONE FD
-	printf("\n[testing single fd]\n\n");
-	while (state1 > 0)
-	{
-		state1 = get_next_line(fd1, &line);
-		printf("fd[%d] ret[%d] line->%s\n", fd1, state1, line);
-		if (state1 >= 0)
-			free(line);
-	}
-//MULTIPLE
-	printf("\n[testing multiple fds]\n\n");
+//MULTIPLE FDS
+	printf("\n~~~~~~~~~~~~~~~~~~~~~ testing multiple fds]\n\n");
 	while (state2 > 0 && state3 > 0)
 	{
 		state2 = get_next_line(fd2, &line);
@@ -63,6 +50,21 @@ int	main(void)
 		if (state3 >= 0)
 			free(line);
 	}
+//ONE FD
+	printf("\n~~~~~~~~~~~~~~~~~~~~~~~ testing single fd \n\n");
+	while (state1 > 0)
+	{
+		state1 = get_next_line(fd1, &line);
+		printf("fd[%d] ret[%d] line->%s\n", fd1, state1, line);
+		if (state1 >= 0)
+			free(line);
+	}
+//ERRORS
+	printf("\n~~~~~~~~~~~~~~~~~~ testing for errors \n\n");
+	printf("fd[%d] return[%d]\n", fd0, get_next_line(fd0, &line));
+	printf("fd[%d] return[%d]\n", fd4, get_next_line(fd4, &line));
+//LEAKS
+	printf("\n~~~~~~~~~~~~~~~~~~ testing for leaks ~\n\n");
 //while (1){}
 	return (0);
 }

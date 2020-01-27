@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 21:54:19 by swofferh       #+#    #+#                */
-/*   Updated: 2020/01/23 22:40:50 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/01/25 16:42:06 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 32
+#  define BUFFER_SIZE 1
 # endif
 
 typedef enum		e_state
