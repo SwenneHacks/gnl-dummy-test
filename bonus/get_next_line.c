@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 21:54:03 by swofferh       #+#    #+#                */
-/*   Updated: 2020/01/25 16:19:59 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/02/13 17:58:47 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static t_state	read_line(t_list *buf, char **out)
 	{
 		buf->size = buf->size - i - 1;
 		ft_strncpy(buf->content, buf->content + i + 1, buf->size);
-		return (READ_LINE);
+		return (ONE_LINE);
 	}
 	else
 		buf->size = 0;
@@ -70,28 +70,28 @@ static t_state	read_line(t_list *buf, char **out)
 
 int				get_next_line(int fd, char **line)
 {
-	static t_list		*buf_list;
+	static t_list		*linked_bufs;
 	t_list				*buf;
 	char				*out;
 	t_state				ret;
 
-	buf = get_buffer(fd, &buf_list);
+	buf = get_buffer(fd, &linked_bufs);
 	if (buf == NULL)
 		return (ERROR);
 	out = NULL;
 	ret = LOOP;
 	while (ret == LOOP)
 		ret = read_line(buf, &out);
-	if (ret == READ_LINE)
+	if (ret == ONE_LINE)
 		*line = out;
 	if (ret == END_FILE)
 	{
 		*line = copy_buffer(out, "", 0);
-		free_buffer(fd, &buf_list);
+		free_buffer(fd, &linked_bufs);
 		if (*line == NULL)
 			return (ERROR);
 	}
 	if (ret == ERROR)
-		free_buffer(fd, &buf_list);
+		free_buffer(fd, &linked_bufs);
 	return (ret);
 }
