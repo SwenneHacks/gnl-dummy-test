@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 21:54:03 by swofferh       #+#    #+#                */
-/*   Updated: 2020/02/12 21:40:12 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/02/13 17:36:36 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static t_state	read_line(int fd, char *buffer, char **out, size_t size)
 	{
 		size = size - i - 1;
 		ft_strncpy(buffer, buffer + i + 1, size);
-		return (READ_LINE);
+		return (ONE_LINE);
 	}
 	else
 		size = 0;
@@ -45,13 +45,13 @@ int				get_next_line(int fd, char **line)
 	static char			buffer[BUFFER_SIZE + 1];
 	static size_t		size;
 	char				*out;
-	static t_state		ret;
+	t_state				ret;
 
 	out = NULL;
 	ret = LOOP;
 	while (ret == LOOP)
 		ret = read_line(fd, buffer, &out, size);
-	if (ret == READ_LINE)
+	if (ret == ONE_LINE)
 		*line = out;
 	if (ret == END_FILE)
 	{

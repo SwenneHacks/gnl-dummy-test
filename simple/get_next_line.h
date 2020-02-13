@@ -6,7 +6,7 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 21:54:19 by swofferh       #+#    #+#                */
-/*   Updated: 2020/02/12 17:31:52 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/02/13 17:34:09 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 typedef enum		e_state
 {
-	READ_LINE = 1,
+	ONE_LINE = 1,
 	END_FILE = 0,
 	ERROR = -1,
 	LOOP = 2
