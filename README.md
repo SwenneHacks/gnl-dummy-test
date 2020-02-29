@@ -25,3 +25,7 @@ Contains my testing files for both the bonus part and the simplified version. I 
 
 
 Wanna see how it works? Use the flag -D BUFFER_SIZE=1 and also -g if you've got a debugger like LLDB so you can follow the 'reading' process and buffer management of this function. Enjoy debbuging 'a la pythontutor.com style' if you know what I mean ;)
+
+RETRY FOLDER:
+
+Is my submitted folder.
