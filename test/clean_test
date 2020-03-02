@@ -1,1 +1,1 @@
-rm -rf output_*
+rm -rf a.out .DS_Store output_* 

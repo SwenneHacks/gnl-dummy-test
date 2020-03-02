@@ -3,16 +3,18 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-int		main(void)
+int	main(void)
 {
 	int		fd;
 	int		ret;
+	int		rd;
 	char	*line;
 	int		linecount;
+	char	buf[5];
 
 	ret = 1;
 	linecount = 1;
-	fd = open("/Users/swofferh/Codam/projects/gnl/retry/read.txt", O_RDONLY);
+	fd = open("read.txt", O_RDONLY);
 	close(42);
 	while (ret > 0)
 	{
@@ -25,4 +27,6 @@ int		main(void)
 			free(line);
 		linecount++;
 	}
+	rd = read(fd, buf, 4);
+	printf("function read return: %i\n", rd);
 }

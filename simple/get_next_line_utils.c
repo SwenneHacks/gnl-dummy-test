@@ -6,16 +6,16 @@
 /*   By: swofferh <swofferh@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/08 21:53:24 by swofferh       #+#    #+#                */
-/*   Updated: 2020/02/13 18:00:08 by swofferh      ########   odam.nl         */
+/*   Updated: 2020/02/29 19:45:43 by swofferh      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char		*copy_buffer(char *old, char *new, size_t n)
+char		*copy_buffer(char *old, char *new, int n)
 {
 	char	*next;
-	size_t	len;
+	int		len;
 
 	if (old == NULL)
 	{
@@ -26,7 +26,7 @@ char		*copy_buffer(char *old, char *new, size_t n)
 	}
 	else
 	{
-		len = scan_index(old, '\0');
+		len = ft_strclen(old, '\0');
 		next = (char *)malloc(sizeof(char) * (len + n + 1));
 		if (next == NULL)
 			return (NULL);
@@ -37,9 +37,9 @@ char		*copy_buffer(char *old, char *new, size_t n)
 	return (next);
 }
 
-char		*ft_strncpy(char *dst, const char *src, size_t n)
+char		*ft_strncpy(char *dst, const char *src, int n)
 {
-	size_t	index;
+	int		index;
 
 	index = 0;
 	while (index < n)
@@ -51,16 +51,12 @@ char		*ft_strncpy(char *dst, const char *src, size_t n)
 	return (dst);
 }
 
-size_t		scan_index(char *str, char c)
+int			ft_strclen(char *str, char c)
 {
-	size_t	index;
+	int		index;
 
 	index = 0;
-	while (str[index])
-	{
-		if (str[index] == c)
-			break ;
+	while (str[index] && str[index] != c)
 		index++;
-	}
 	return (index);
 }
