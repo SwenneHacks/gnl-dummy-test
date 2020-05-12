@@ -10,12 +10,12 @@ A handy function that reads files (on multiple descriptors) line by line.
 This project will not only allow you to add a very convenient function to your collection (library), but it will also allow you to learn a highly interesting new concept in C programming: static variables, file descriptors management and the usage of -D BUFFER_SIZE (flag & macro).
 
 
-# BONUS version:
+### BONUS version:
 
 Contains funtions that manage multiple descriptors (while reading) with usage of linked/chained lists. Also, in comparisson to the other version (SIMPLE folder) it has a single static variable (my struct).
 
 
-# SIMPLE version:
+### SIMPLE version:
 
 Contains the first version of my get next line function with the mandatory requirements of the 42 network project-subject (pdf included in this repository). It has multiple static variables and as far as I know I only handles a single open file descriptor. But correct me if I'm wrong! More about my testing folder bellow ↴
 
