@@ -1,0 +1,7 @@
+hello
+.
+There are seven lines.
+But read buffer got one out.
+This one has got exactly 32bits
+Got it?
+.
