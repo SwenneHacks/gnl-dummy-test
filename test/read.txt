@@ -1,7 +1,0 @@
-hello
-.
-There are three lines.
-By every dot I got a new line.
-This one has got exactly 32bits
-Got it?
-.

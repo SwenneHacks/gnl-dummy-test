@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../get_next_line_bonus.h"
+#include "inc/get_next_line_bonus.h"
 #include <stdio.h>
 #include <fcntl.h>
 
@@ -24,8 +24,8 @@ int	main(void)
 
 	state1 = 1;
 	state2 = 1;
-	fd2 = open("../get_next_line.h", O_RDONLY);
-	fd1 = open("../get_next_line_bonus.h", O_RDONLY);
+	fd2 = open("read.txt", O_RDONLY);
+	fd1 = open("poem.txt", O_RDONLY);
 
 	printf("\n~~~~~~~~~~~~~~~~~~~~~ testing multiple fds]\n\n");
 	while (state1 > 0 && state2 > 0)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../get_next_line.h"
+#include "inc/get_next_line.h"
 #include <stdio.h>
 #include <fcntl.h>
 
@@ -32,6 +32,9 @@ int     main(void)
 //LEAKS
         printf("\n~~~~~~~~~~~~~~~~~~ testing for leaks ~\n\n");
         //while (1){}
-        printf("  [OK]  \n\n");
+        printf("  [ you have to uncomment ]  \n");
+        printf("  [ the while(1){} above! ]  \n");
+        printf("  [ and use 'leaks' a.out ]  \n\n");
+        
         return (0);
 }
