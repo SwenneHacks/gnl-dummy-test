@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-DIR	= ../../done/
+DIR	= ../gnl_folder
 #write down the path of your gnl above, mine is here for now.
 FLAGS 	= -Wall -Werror -Wextra
 
