@@ -22,6 +22,9 @@ Should contain a get next line function with the mandatory requirements of the 4
 
 Contains my testing files for both the bonus part and the simplified version. I kept it with 'int main(void)' just so beginners can compile it the way the like. If they choose to use the Makefile it will be there to see what it does (with clean and cat -e rules).
 
+HOW TO TEST:
+ make read | make simple | make bonus | make errors |
+
 I tried to keep them apart because there was all the 'moving around' and commenting it on/off all the time to compare both results so I used a cleaning script for that and two other testing scripts that run the output right after creating the test result - which I find it very useful.
 
 Wanna see how it works? Use the flag -D BUFFER\_SIZE=1 and also -g if you've got a debugger (search lldb) so you can follow the 'reading' process and buffer management of this function. Enjoy debugging 'a la pythontutor.com style' if you know what I mean ;)
