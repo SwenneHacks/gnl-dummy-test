@@ -1,7 +1,7 @@
 # get\_next\_line
 A handy function that reads files (on multiple descriptors) line by line.
 
-
+ 
 "The aim of this project is to make you code a function that returns a line ending with a newline, read from a file descriptor. Because reading a line on a fd is way too tedious..." - quoted by 42
 
 
